@@ -1,4 +1,4 @@
-FROM bitnami/minideb-extras:jessie-r88
+FROM bitnami/oraclelinux-extras:7-r20
 LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 ENV BITNAMI_PKG_CHMOD="-R g+rwX,o+rw" \
@@ -6,15 +6,15 @@ ENV BITNAMI_PKG_CHMOD="-R g+rwX,o+rw" \
     HOME="/"
 
 # Install required system packages and dependencies
-RUN install_packages ghostscript imagemagick libbz2-1.0 libc6 libgcc1 libmysqlclient18 libncurses5 libreadline6 libsqlite3-0 libssl1.0.0 libstdc++6 libtinfo5 zlib1g
-RUN bitnami-pkg install node-8.11.3-0 --checksum e8a276dcff0eb7c501f7c8ba7bd3df532886faf31701fa83c4ab0d7614b4bef2
-RUN bitnami-pkg unpack mysql-client-10.1.34-0 --checksum 2954d9390cb8b91dc924beacc179ed03050f6c5cb7ad328010cdbde1ab05c1e9
-RUN bitnami-pkg unpack ghost-1.24.6-0 --checksum 64ee9bbdf0f7ee6140deb81dae297152c4767d29bacb45316262a94a9b9f48d3
+RUN install_packages bzip2-libs glibc keyutils-libs krb5-libs libcom_err libgcc libselinux libstdc++ ncurses-libs nss-softokn-freebl openssl-libs pcre readline sqlite zlib
+RUN bitnami-pkg install node-8.11.3-0 --checksum 0f9b299a5add60d28a967ab89a269a7f313f500a26b43ca825c47d878dff137d
+RUN bitnami-pkg unpack mysql-client-10.1.34-0 --checksum 012f1f222898565b55f7d4522514c7c130d2bfe4c988754eed658ef6dafa980c
+RUN bitnami-pkg unpack ghost-1.24.6-0 --checksum cd77c5c0e653fc08d62f01cf250f074c2ec5f4928372b5ba0e36486dd0904d79
 
 COPY rootfs /
 ENV ALLOW_EMPTY_PASSWORD="no" \
     BITNAMI_APP_NAME="ghost" \
-    BITNAMI_IMAGE_VERSION="1.24.6-r1" \
+    BITNAMI_IMAGE_VERSION="1.24.6-ol-7-r2" \
     BLOG_TITLE="User's Blog" \
     GHOST_DATABASE_NAME="bitnami_ghost" \
     GHOST_DATABASE_PASSWORD="" \

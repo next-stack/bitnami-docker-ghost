@@ -7,12 +7,14 @@ jobs:
         environment:
           RELEASE_SERIES_LIST: "1"
           LATEST_STABLE: "1"
+          DISTRIBUTIONS_LIST: "debian-8,ol-7"
           IMAGE_NAME: ghost
           CHART_NAME: ghost
           CHART_REPO: https://github.com/kubernetes/charts
           DOCKER_PROJECT: bitnami
           QUAY_PROJECT: bitnami
           GCLOUD_PROJECT: bitnami-containers
+          AZURE_PROJECT: bitnami
 
     steps:
       - checkout
@@ -62,4 +64,4 @@ workflows:
             branches:
               only: /.*/
             tags:
-              only: /^[0-9].*-r[0-9]+$/
+              only: /^.*(?<!-rhel-7)-r[0-9]+$/
