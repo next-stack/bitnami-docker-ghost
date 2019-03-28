@@ -11,7 +11,7 @@ https://ghost.org
 ## Docker Compose
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-ghost/master/docker-compose.yml > docker-compose.yml
+$ curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-ghost/master/docker-compose.yml > docker-compose.yml
 docker-compose up -d
 ```
 
@@ -89,7 +89,7 @@ If you want to run the application manually instead of using docker-compose, the
 1. Create a new network for the application and the database:
 
   ```bash
-  docker network create ghost-tier
+  $ docker network create ghost-tier
   ```
 
 2. Create a volume for MariaDB persistence and create a MariaDB container:
@@ -172,13 +172,13 @@ In this case, you need to specify the directories to mount on the run command. T
 1. Create a network (if it does not exist):
 
   ```bash
-  docker network create ghost-tier
+  $ docker network create ghost-tier
   ```
 
 2. Create a MariaDB container with host volume:
 
   ```bash
-  docker run -d --name mariadb --net ghost-tier \
+  $ docker run -d --name mariadb --net ghost-tier \
     -e ALLOW_EMPTY_PASSWORD=yes \
     -e MARIADB_USER=bn_ghost \
     -e MARIADB_DATABASE=bitnami_ghost \
@@ -208,7 +208,7 @@ Bitnami provides up-to-date versions of MariaDB and Ghost, including security pa
 1. Get the updated images:
 
   ```bash
-  docker pull bitnami/ghost:latest
+  $ docker pull bitnami/ghost:latest
   ```
 
 2. Stop your container:
@@ -219,7 +219,7 @@ Bitnami provides up-to-date versions of MariaDB and Ghost, including security pa
 3. Take a snapshot of the application state:
 
 ```bash
-rsync -a /path/to/ghost-persistence /path/to/ghost-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
+$ rsync -a /path/to/ghost-persistence /path/to/ghost-persistence.bkp.$(date +%Y%m%d-%H.%M.%S)
 ```
 
 Additionally, [snapshot the MariaDB data](https://github.com/bitnami/bitnami-docker-mariadb#step-2-stop-and-backup-the-currently-running-container).
@@ -256,7 +256,7 @@ ghost:
  * For manual execution add a `-e` option with each variable and value:
 
 ```bash
- docker run -d -p 80:2368 --name ghost --network=ghost-tier \
+ $ docker run -d -p 80:2368 --name ghost --network=ghost-tier \
     -e GHOST_PASSWORD=my_password \
     -v /your/local/path/bitnami/ghost:/bitnami \
     bitnami/ghost
